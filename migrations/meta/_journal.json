@@ -15,6 +15,20 @@
       "when": 1752605369865,
       "tag": "0001_unusual_caretaker",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1752616120403,
+      "tag": "0003_sharp_barracuda",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1752616590084,
+      "tag": "0004_glossy_iron_monger",
+      "breakpoints": true
     }
   ]
 }

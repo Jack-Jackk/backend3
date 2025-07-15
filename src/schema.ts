@@ -2,7 +2,11 @@ import { integer, text, serial, pgTable } from "drizzle-orm/pg-core";
 
 export const usersTable = pgTable("users", {
   id: serial("id").primaryKey(),
-  userId: text("user_id").notNull(),
+  userId: text("user_id").notNull().unique(),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  email: text("email").notNull(),
+  phoneNumber: text("phone_number").notNull(),
   eyeColor: text("eye_color").notNull(),
   hairColor: text("hair_color").notNull(),
   gender: text("gender").notNull(),
@@ -17,6 +21,3 @@ export const usersTable = pgTable("users", {
 
 export type InsertUser = typeof usersTable.$inferInsert;
 export type SelectUser = typeof usersTable.$inferSelect;
-
-
-
