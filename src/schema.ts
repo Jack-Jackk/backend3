@@ -1,4 +1,4 @@
-import { integer, text, serial, pgTable } from "drizzle-orm/pg-core";
+import { integer, text, serial, timestamp, pgTable } from "drizzle-orm/pg-core";
 
 export const usersTable = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -21,3 +21,16 @@ export const usersTable = pgTable("users", {
 
 export type InsertUser = typeof usersTable.$inferInsert;
 export type SelectUser = typeof usersTable.$inferSelect;
+
+export const tripsTable = pgTable("trips", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  activity: text("activity").notNull(),
+  time: text("time").notNull(),
+  location: text("location").notNull(),
+  emergencyContact: text("emergency_contact").notNull(),
+  startedAt: timestamp("started_at", { withTimezone: true }).defaultNow().notNull(),
+});
+
+export type InsertTrip = typeof tripsTable.$inferInsert;
+export type SelectTrip = typeof tripsTable.$inferSelect;
