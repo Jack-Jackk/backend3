@@ -1,4 +1,4 @@
-import { integer, text, serial, timestamp, pgTable } from "drizzle-orm/pg-core";
+import { integer, text, serial, timestamp, pgTable, doublePrecision } from "drizzle-orm/pg-core";
 
 export const usersTable = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -30,6 +30,16 @@ export const tripsTable = pgTable("trips", {
   location: text("location").notNull(),
   emergencyContact: text("emergency_contact").notNull(),
   startedAt: timestamp("started_at", { withTimezone: true }).defaultNow().notNull(),
+  endedAt: timestamp("ended_at", { withTimezone: true }),
+});
+
+export const locationsTable = pgTable("locations", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  tripId: text("trip_id").notNull(),
+  latitude: doublePrecision("latitude").notNull(),
+  longitude: doublePrecision("longitude").notNull(),
+  timestamp: timestamp("timestamp", { withTimezone: true }).notNull(),
 });
 
 export type InsertTrip = typeof tripsTable.$inferInsert;
