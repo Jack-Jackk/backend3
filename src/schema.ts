@@ -42,5 +42,13 @@ export const locationsTable = pgTable("locations", {
   timestamp: timestamp("timestamp", { withTimezone: true }).notNull(),
 });
 
+export const userStatsTable = pgTable("user_stats", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull().unique(),
+  totalTrips: integer("total_trips").notNull().default(0),
+  totalDistance: doublePrecision("total_distance").notNull().default(0),
+  totalTime: integer("total_time").notNull().default(0),
+});
+
 export type InsertTrip = typeof tripsTable.$inferInsert;
 export type SelectTrip = typeof tripsTable.$inferSelect;
